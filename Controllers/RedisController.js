@@ -9,6 +9,11 @@ exports.get_all_experiences = (req, res, next) => {
     let keys = Object.keys(id)
     let i = 0
 
+    if(!keys.length) {
+      res.send({ educations: return_dataset })
+      return;
+    }
+    
     keys.forEach((l) => {
       client.hgetall(id[l], (err, o) => {
         i++
@@ -60,6 +65,11 @@ exports.get_all_educations = (req, res, next) => {
     let keys = Object.keys(id)
     let i = 0
 
+    if(!keys.length) {
+      res.send({ educations: return_dataset })
+      return;
+    }
+    console.log(keys.length)
     keys.forEach((l) => {
       client.hgetall(id[l], (err, o) => {
         i++
@@ -70,7 +80,7 @@ exports.get_all_educations = (req, res, next) => {
         }
 
         if (i == keys.length) {
-          res.send({ experiences: return_dataset })
+          res.send({ educations: return_dataset })
         }
       })
     })
