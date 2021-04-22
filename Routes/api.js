@@ -33,4 +33,7 @@ Route.delete('/experience/:id', redis.delete_data)
 // get random number
 Route.get('/randomNumber', common.get_random_number)
 
+// get rps opponent's move
+Route.get('/rps-opponents-move', common.get_rps_opponents_move)
+
 module.exports = Route
