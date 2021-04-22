@@ -10,7 +10,7 @@ exports.get_all_experiences = (req, res, next) => {
     let i = 0
 
     if(!keys.length) {
-      res.send({ educations: return_dataset })
+      res.send( return_dataset )
       return;
     }
     
@@ -19,12 +19,12 @@ exports.get_all_experiences = (req, res, next) => {
         i++
         if (err) { console.log(err) } 
         else {
-          temp_data = { 'id': id[l], 'data': o }
+          temp_data = { ...o, 'id': id[l] }
           return_dataset.push(temp_data)
         }
 
         if (i == keys.length) {
-          res.send({ experiences: return_dataset })
+          res.send( return_dataset )
         }
       })
     })
@@ -66,21 +66,21 @@ exports.get_all_educations = (req, res, next) => {
     let i = 0
 
     if(!keys.length) {
-      res.send({ educations: return_dataset })
+      res.send( return_dataset )
       return;
     }
-    console.log(keys.length)
+    
     keys.forEach((l) => {
       client.hgetall(id[l], (err, o) => {
         i++
         if (err) { console.log(err) } 
         else {
-          temp_data = { 'id': id[l], 'data': o }
+          temp_data = { ...o, 'id': id[l] }
           return_dataset.push(temp_data)
         }
 
         if (i == keys.length) {
-          res.send({ educations: return_dataset })
+          res.send( return_dataset )
         }
       })
     })

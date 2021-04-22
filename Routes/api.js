@@ -3,6 +3,12 @@ let Route = express()
 let redis = require('../Controllers/RedisController')
 let common = require('../Controllers/CommonController')
 
+Route.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // return instructions
 Route.get('/', (req, res, next) => {
   res.send('Node-Redis CRUD Application | check Readme for instructions')
