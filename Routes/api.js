@@ -2,6 +2,7 @@ let express = require('express')
 let Route = express()
 let redis = require('../Controllers/RedisController')
 let common = require('../Controllers/CommonController')
+let ttt = require('../Controllers/TTTController')
 
 Route.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -35,5 +36,9 @@ Route.get('/randomNumber', common.get_random_number)
 
 // get rps opponent's move
 Route.get('/rps-opponents-move', common.get_rps_opponents_move)
+
+// apis for ttt game
+Route.get('/ttt-ai-assign', ttt.tttAiAssign)
+Route.get('/ttt-ai-move', ttt.getTttAiMove)
 
 module.exports = Route
